@@ -1,0 +1,39 @@
+
+
+Test Plan:
+
+Assumptions:
+-Single User can have multiple resource
+
+start Test:
+- Make sure new resources are spawed on every start call with unique resource id or unique identifier.
+- Verify in case of success always S1 is obtained not the others resource.
+- Make sure unsuccessful resoure in S5 are automatically terminated.
+- Multi-thread or have concurrently test for the start api with high number of users and resources
+- Make sure every user can spaw multiple resource
+- Verify limit of resources is maintained
+
+Execution:
+-Verify the state change is always sequential accept for the fact of failure
+- Multi-thread or have concurrently test for the run application with high number of users and resources.
+- Try negative case of making a resource fail and verify the state ends at S5 before being terminated.
+
+stop
+- Stop API changes the status of run and sequentially changes state to S5
+- State S5 for failure of stop else make sure S4 is the state where the resource ends
+- Stop api must always lead to graceful change of state
+- Check for consistency of a resource
+
+
+Common for all endpoints and Non Functional:
+- API Validation of all end points like start accepts only user id , run and stop accept user and resource id.
+- Verify Error messages/ Response code and so on for each api endpoint.
+- Ensure timeout in case of failure to create a resource(killing stale processes).
+- Ensure hard limit on how much time a resource can run.
+- Check under heavy system load or overload every api.
+- Verify Long length API's for each.
+- Verify system under packet loss.
+- Test Max time for creating a resource.
+
+
+
